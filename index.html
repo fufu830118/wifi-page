@@ -2,31 +2,78 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>WiFi 密碼文件</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    h2 {
-      margin-top: 20px;
-      color: #333;
-    }
-    iframe {
-      width: 90%;
-      height: 90vh;
-      border: none;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      margin-top: 10px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiwynn Guest Wi-Fi</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h2>WiFi 密碼文件</h2>
-  <iframe src="https://drive.google.com/file/d/1rCHj8A4egcdId5lKAA2VhMeoIx0Ai13c/preview" allow="autoplay"></iframe>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+  <div class="max-w-md w-full bg-gray-800 rounded-2xl shadow-lg p-6 space-y-6">
+    <h1 class="text-2xl font-bold text-center text-teal-400">Wiwynn 來賓 Wi-Fi</h1>
+
+    <!-- 資安提醒區塊 -->
+    <div id="notice-block" class="space-y-3">
+      <p class="font-semibold text-yellow-400">資訊安全提醒：</p>
+      <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+        <li>請勿使用此網路進行機密性高的資料傳輸。</li>
+        <li>請勿連接或嘗試掃描公司內部網路設備。</li>
+        <li>請勿下載或散播任何非法內容。</li>
+        <li>本公司保留監控 Wi-Fi 使用行為的權利。</li>
+        <li>若有異常行為，將自動中斷連線。</li>
+      </ul>
+      <button onclick="acceptNotice()" class="w-full mt-4 py-2 bg-teal-500 hover:bg-teal-600 rounded text-white font-semibold">
+        我已閱讀並同意
+      </button>
+    </div>
+
+    <!-- 帳密資訊區塊 -->
+    <div id="wifi-info" class="space-y-4 hidden">
+      <div class="grid grid-cols-3 items-center">
+        <span class="font-semibold col-span-1">Wi-Fi 名稱:</span>
+        <span id="ssid" class="text-teal-300 col-span-1">WiwynnGuest</span>
+        <button onclick="copyText('ssid')" class="text-sm text-blue-400 hover:text-blue-200 col-span-1 text-right" title="複製 SSID">
+          <i class="fas fa-copy"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-3 items-center">
+        <span class="font-semibold col-span-1">連線密碼:</span>
+        <span id="password" class="text-teal-300 col-span-1" data-shown="true">aWP0425004</span>
+        <div class="flex justify-end gap-2 col-span-1">
+          <button onclick="copyText('password')" class="text-sm text-blue-400 hover:text-blue-200" title="複製密碼">
+            <i class="fas fa-copy"></i>
+          </button>
+          <button onclick="togglePassword()" class="text-sm text-yellow-300 hover:text-yellow-100" title="顯示/隱藏密碼">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("已複製: " + text);
+      });
+    }
+
+    function acceptNotice() {
+      document.getElementById("notice-block").classList.add("hidden");
+      document.getElementById("wifi-info").classList.remove("hidden");
+    }
+
+    function togglePassword() {
+      const pw = document.getElementById("password");
+      if (pw.dataset.shown === "true") {
+        pw.innerText = "••••••••••";
+        pw.dataset.shown = "false";
+      } else {
+        pw.innerText = "aWP0425004";
+        pw.dataset.shown = "true";
+      }
+    }
+  </script>
 </body>
 </html>
-<!-- force rebuild -->
