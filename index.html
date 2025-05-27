@@ -9,21 +9,40 @@
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
   <div class="max-w-md w-full bg-gray-800 rounded-2xl shadow-lg p-6 space-y-6">
-    <h1 class="text-2xl font-bold text-center text-teal-400">Wiwynn 來賓 Wi-Fi</h1>
+    <!-- Header -->
+    <h1 class="text-2xl font-bold text-center text-teal-400">Wiwynn Wi-Fi</h1>
 
     <!-- 資安提醒區塊 -->
-    <div id="notice-block" class="space-y-3">
-      <p class="font-semibold text-yellow-400">資訊安全提醒 / Security Notice:</p>
-      <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
-        <li>請勿使用此網路進行機密性高的資料傳輸。<br>Do not use this network for confidential data.</li>
-        <li>請勿連接或嘗試掃描公司內部網路設備。<br>Do not scan or connect to internal systems.</li>
-        <li>請勿下載或散播任何非法內容。<br>Do not distribute or download illegal content.</li>
-        <li>本公司保留監控 Wi-Fi 使用行為的權利。<br>We reserve the right to monitor usage.</li>
-        <li>若有異常行為，將自動中斷連線。<br>Abnormal behavior will be disconnected automatically.</li>
-      </ul>
-      <button onclick="acceptNotice()" class="w-full mt-4 py-2 bg-teal-500 hover:bg-teal-600 rounded text-white font-semibold">
-        我已閱讀並同意 / I Agree
-      </button>
+    <div id="notice-block" class="space-y-6">
+      <!-- 中文區塊 -->
+      <div class="space-y-3">
+        <p class="font-semibold text-yellow-400">資訊安全提醒：</p>
+        <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+          <li>請勿使用此網路進行機密性高的資料傳輸。</li>
+          <li>請勿連接或嘗試掃描公司內部網路設備。</li>
+          <li>請勿下載或散播任何非法內容。</li>
+          <li>本公司保留監控 Wi-Fi 使用行為的權利。</li>
+          <li>若有異常行為，將自動中斷連線。</li>
+        </ul>
+        <button onclick="acceptNotice()" class="w-full py-2 bg-teal-500 hover:bg-teal-600 rounded text-white font-semibold">
+          我已閱讀並同意
+        </button>
+      </div>
+      <hr class="border-gray-600">
+      <!-- English Section -->
+      <div class="space-y-3">
+        <p class="font-semibold text-yellow-400">Security Notice:</p>
+        <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+          <li>Do not use this network for confidential data.</li>
+          <li>Do not scan or connect to internal systems.</li>
+          <li>Do not distribute or download illegal content.</li>
+          <li>We reserve the right to monitor usage.</li>
+          <li>Abnormal behavior will be disconnected automatically.</li>
+        </ul>
+        <button onclick="acceptNotice()" class="w-full py-2 bg-teal-500 hover:bg-teal-600 rounded text-white font-semibold">
+          I Agree
+        </button>
+      </div>
     </div>
 
     <!-- 帳密資訊區塊 -->
@@ -36,9 +55,8 @@
       <div class="grid grid-cols-3 items-center">
         <span class="font-semibold col-span-1">Password:</span>
         <span id="password" class="text-teal-300 col-span-1">aWP0425004</span>
-        <!-- Changed text-right to text-center for the button's inner text -->
-        <button onclick="copyText('password')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded col-span-1 text-center" title="複製密碼">
-          複製密碼
+        <button onclick="copyText('password')" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded col-span-1 text-center" title="copy">
+          copy
         </button>
       </div>
     </div>
@@ -77,8 +95,6 @@
       document.getElementById("notice-block").classList.add("hidden");
       document.getElementById("wifi-info").classList.remove("hidden");
     }
-
-    // The `togglePassword` function has been removed as it is no longer required.
   </script>
 </body>
 </html>
